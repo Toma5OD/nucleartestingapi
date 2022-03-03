@@ -1,0 +1,162 @@
+openapi: 3.0.0
+info:
+  title: NuclearTestingAPI
+  description: NuclearTesting API Test
+  contact:
+    name: Tomas O Dalaigh
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/Toma5OD/NuclearTestingAPI/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: http://nucleartestingapi.com
+paths:
+  /test:
+    description: Operation to Fetch Location
+    get:
+      operationId: testGET
+      parameters:
+      - name: testlocation
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: Texas
+      responses:
+        "200":
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tests'
+      x-swagger-router-controller: Default
+    post:
+      description: Add a new test
+      operationId: testPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/test'
+      responses:
+        "201":
+          description: Record succesfully added
+      x-swagger-router-controller: Default
+  /test{id}:
+    description: Get Test based on Path Parameter
+    get:
+      operationId: testidGET
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Succes Response with Path Param
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tests'
+      x-swagger-router-controller: Default
+components:
+  schemas:
+    test:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        OperationName:
+          type: string
+          example: Operation Greenhouse
+        CodeName:
+          type: string
+          example: Dog
+        DateTime:
+          type: integer
+        Location:
+          type: string
+          example: Runit ("Yvonne") Island
+        Lng:
+          type: integer
+        Lat:
+          type: integer
+        Elevation + Height:
+          type: integer
+          example: 2
+        Delivery:
+          type: string
+          example: Tower
+        Purpose:
+          type: string
+          example: weapon development
+        Device:
+          type: string
+          example: Mark 6
+        Yeild:
+          type: string
+          example: 70 kilotons
+        Country:
+          type: string
+          example: USA
+    tests:
+      type: array
+      items:
+        $ref: '#/components/schemas/tests_inner'
+    tests_inner:
+      properties:
+        id:
+          type: integer
+          example: 1
+        OperationName:
+          type: string
+          example: Operation Greenhouse
+        CodeName:
+          type: string
+          example: Dog
+        DateTime:
+          type: integer
+        Location:
+          type: string
+          example: Runit ("Yvonne") Island
+        Lng:
+          type: integer
+        Lat:
+          type: integer
+        Elevation + Height:
+          type: integer
+          example: 2
+        Delivery:
+          type: string
+          example: Tower
+        Purpose:
+          type: string
+          example: weapon development
+        Device:
+          type: string
+          example: Mark 6
+        Yeild:
+          type: string
+          example: 70 kilotons
+        Country:
+          type: string
+          example: USA
+      example:
+        Yeild: 70 kilotons
+        CodeName: Dog
+        Lng: 6
+        OperationName: Operation Greenhouse
+        Device: Mark 6
+        Purpose: weapon development
+        DateTime: 0
+        Elevation + Height: 2
+        Country: USA
+        id: 1
+        Delivery: Tower
+        Lat: 1
+        Location: Runit ("Yvonne") Island
